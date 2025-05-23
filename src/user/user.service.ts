@@ -7,32 +7,32 @@ import { UpdateUserDto } from './dto/updateUserDto';
 
 @Injectable()
 export class UserService {
-    constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>,
-    ) {}
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+  ) {}
 
-    create(createUserDto: CreateUserDto) {
-        const user = this.userRepository.create(createUserDto);
-        return this.userRepository.save(user);
-    }
+  create(createUserDto: CreateUserDto) {
+    const user = this.userRepository.create(createUserDto);
+    return this.userRepository.save(user);
+  }
 
-    findAll() {
-        const users = this.userRepository.find();
-        return users;
-    }
+  findAll() {
+    const users = this.userRepository.find();
+    return users;
+  }
 
-    findOne(id : number) {
-        const user = this.userRepository.findOne({ where: { id } });
-        return user;  
-    }
+  findOne(id: number) {
+    const user = this.userRepository.findOne({ where: { id } });
+    return user;
+  }
 
-   async update(id: number, updateUserDto: UpdateUserDto) {
-        const user = await this.userRepository.findOne({ where: { id } });
-        return this.userRepository.save({ ...user, ...updateUserDto });
-    }
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    return this.userRepository.save({ ...user, ...updateUserDto });
+  }
 
-    remove(id: number) {
-        return this.userRepository.delete(id)
-    }
+  remove(id: number) {
+    return this.userRepository.delete(id);
+  }
 }

@@ -1,5 +1,19 @@
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+
 export class UpdateUserDto {
-    name?: string;
-    email?: string;
-    password?: string;
+  @IsNotEmpty()
+  @IsString()
+  username?: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  email?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  profilePic?: string;
 }
